@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 
 export const Table = (props) => {
-  console.log(props.data);
   return (
     <section
       style={{

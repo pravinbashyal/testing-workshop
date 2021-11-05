@@ -18,6 +18,8 @@ export function useApi() {
       setData(res);
       setIsLoading(false);
     };
+    fetchFromRemote();
+    return () => setData([]);
   }, []);
   return { onSubmit, isLoading, data };
 }

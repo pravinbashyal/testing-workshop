@@ -1,4 +1,5 @@
 import {
+  cleanup,
   render,
   screen,
   waitFor,
@@ -30,11 +31,14 @@ test("renders default values", () => {
   const { debug, container, getByRole } = render(<App />);
   const nameInput = getByRole("textbox", { name: "Name" });
   expect(nameInput).toHaveValue("");
+  cleanup();
 });
 
 test("populates table", async () => {
   const { debug, container, getByRole, getByText, getByLabelText, findByText } =
     render(<App />);
+  await waitForElementToBeRemoved(getByRole("progressbar"));
+
   const nameInput = getByRole("textbox", { name: "Name" });
   userEvent.type(nameInput, "Harry potter");
   userEvent.click(getByRole("button", { name: "Add Item" }));
@@ -43,7 +47,5 @@ test("populates table", async () => {
   );
 
   await waitForElementToBeRemoved(getByRole("progressbar"));
-  debug(container);
-
   expect(getByText("Harry potter")).toBeInTheDocument();
 });

@@ -9,7 +9,7 @@ export const remoteAdd = async (value) => {
         id: uniqueId("user-"),
       });
       res(db);
-    }, 1000);
+    }, 500);
   });
 };
 
@@ -17,6 +17,6 @@ export const remoteFetch = async () => {
   return new Promise((res) => {
     setTimeout(() => {
       res(db);
-    }, 1000);
+    }, 500);
   });
 };

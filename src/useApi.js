@@ -13,10 +13,11 @@ export function useApi() {
 
   useEffect(() => {
     setIsLoading(true);
-    remoteFetch().then((res) => {
+    const fetchFromRemote = async () => {
+      const res = await remoteFetch();
       setData(res);
       setIsLoading(false);
-    });
+    };
   }, []);
   return { onSubmit, isLoading, data };
 }
